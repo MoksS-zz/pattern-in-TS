@@ -6,7 +6,8 @@ class Search  {
 
 	searchWordInText() {
 		return this.text;
-	};
+    };
+    
 	getWord() {
 		return this.word;
 	};
@@ -15,13 +16,15 @@ class Search  {
 class SearchAdapter {
     constructor(adaptee) {
         this.adaptee = adaptee
-    }
+    };
+
 	searchWordInText() {
         const {adaptee} = this;
 		return 'Это слово ' + adaptee.getWord()
 			+ ' найдено в тексте ' + adaptee.searchWordInText();
 	};
 };
+
 const search = new Search("night coding", "night");
 const searchAdapter = new SearchAdapter(search); 
 const result = searchAdapter.searchWordInText();
