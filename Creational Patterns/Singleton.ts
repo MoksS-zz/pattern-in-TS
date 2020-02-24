@@ -1,47 +1,38 @@
+// antipattern> use const and readonly);
+
 class Singleton {
   private static instance: Singleton;
 
-  /**
-   * Конструктор Одиночки всегда должен быть скрытым, чтобы предотвратить
-   * создание объекта через оператор new.
-   */
-  private constructor() { }
+  private readonly said: string;
 
-  /**
-   * Статический метод, управляющий доступом к экземпляру одиночки.
-   *
-   * Эта реализация позволяет вам расширять класс Одиночки, сохраняя повсюду
-   * только один экземпляр каждого подкласса.
-   */
-  public static getInstance(): Singleton {
-      if(!Singleton.instance) {
-          Singleton.instance = new Singleton();
-      }
-
-      return Singleton.instance;
+  private constructor() {
+    this.said = "WOW говорит:";
   }
 
-  /**
-   * Наконец, любой одиночка должен содержать некоторую бизнес-логику, которая
-   * может быть выполнена на его экземпляре.
-   */
-  public someBusinessLogic() {
-      // ...
+  public static getInstance(): Singleton {
+    if (Singleton.instance === undefined) {
+      Singleton.instance = new Singleton();
+    }
+
+    return Singleton.instance;
+  }
+
+  public wow(arg: string): void {
+    console.log(this.said, arg);
   }
 }
 
-/**
-* Клиентский код.
-*/
-function clientCode() {
+function clientSingleton(): void {
   const s1 = Singleton.getInstance();
   const s2 = Singleton.getInstance();
 
+  s1.wow("NOT WOW");
+
   if (s1 === s2) {
-      console.log('Singleton works, both variables contain the same instance.');
+    console.log("Singleton works");
   } else {
-      console.log('Singleton failed, variables contain different instances.');
+    console.log("Singleton filed");
   }
 }
 
-clientCode();
+clientSingleton();

@@ -1,23 +1,27 @@
 "use strict";
 class Singleton {
-    constructor() { }
+    constructor() {
+        this.said = "WOW говорит:";
+    }
     static getInstance() {
-        if (!Singleton.instance) {
+        if (Singleton.instance === undefined) {
             Singleton.instance = new Singleton();
         }
         return Singleton.instance;
     }
-    someBusinessLogic() {
+    wow(arg) {
+        console.log(this.said, arg);
     }
 }
-function clientCode() {
+function clientSingleton() {
     const s1 = Singleton.getInstance();
     const s2 = Singleton.getInstance();
+    s1.wow("NOT WOW");
     if (s1 === s2) {
-        console.log('Singleton works, both variables contain the same instance.');
+        console.log("Singleton works");
     }
     else {
-        console.log('Singleton failed, variables contain different instances.');
+        console.log("Singleton filed");
     }
 }
-clientCode();
+clientSingleton();
