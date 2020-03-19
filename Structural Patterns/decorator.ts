@@ -1,10 +1,12 @@
 interface ComponentA {
-   operation(): string;
+  operation(): string;
 }
 
 class AComponent implements ComponentA {
+  a = `A-Component`;
+
   public operation(): string {
-    return `A-Component`;
+    return this.a;
   }
 }
 
@@ -21,7 +23,6 @@ class Decorator implements ComponentA {
   }
 }
 
-
 class DecoratorA extends Decorator {
   public operation(): string {
     return `DecoratorA(${super.operation()})`;
@@ -30,20 +31,18 @@ class DecoratorA extends Decorator {
 
 class DecoratorB extends Decorator {
   public operation(): string {
-    return `DecoratorB(${super.operation()})`
+    return `DecoratorB(${super.operation()})`;
   }
 }
 
-function decoratorTest(component: ComponentA) {
+function decoratorTest(component: ComponentA): void {
   console.log(`RESULT: ${component.operation()}`);
 }
 
 const start = new AComponent();
 decoratorTest(start);
-console.log('');
+console.log("");
 
 const decorator1 = new DecoratorA(start);
 const decorator2 = new DecoratorB(decorator1);
 decoratorTest(decorator2);
-
-
