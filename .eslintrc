@@ -18,6 +18,9 @@
     "max-classes-per-file": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-use-before-define":"off",
-    "class-methods-use-this":"off"
+    "class-methods-use-this":"off",
+    "no-plusplus":"off",
+    "guard-for-in":"off",
+    "no-restricted-syntax": "off"
   }
 }
